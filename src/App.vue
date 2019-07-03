@@ -1,13 +1,17 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div id="app" class="">
+    <NavWeb></NavWeb>
     <router-view/>
   </div>
 </template>
-
+<script>
+import NavWeb from '@/components/NavWeb.vue'
+export default {
+  components:{
+    NavWeb,
+  }
+}
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
