@@ -1,35 +1,52 @@
 <template>
-  <div id="app" class="">
-    <NavWeb></NavWeb>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-content>
+      <Toolbar></Toolbar>
+      <v-container>
+        <router-view/>
+        <v-dialog
+          v-model="loading.estado"
+          hide-overlay
+          persistent
+          width="300"
+          >
+          <v-card
+            :color="loading.color"
+            dark
+          >
+            <v-card-text>
+              {{loading.titulo}}
+              <v-progress-linear
+                indeterminate
+                color="white"
+                class="mb-0"
+              ></v-progress-linear>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-container>
+      <Footer></Footer>
+    </v-content>
+  </v-app> 
 </template>
+
 <script>
-import NavWeb from '@/components/NavWeb.vue'
+import Toolbar from '@/components/Toolbar.vue';
+import Footer from '@/components/Footer.vue';
+import { mapState} from 'vuex'
 export default {
+  name: 'App',
+  data () {
+    return {
+      //
+    }
+  },
   components:{
-    NavWeb,
+    Toolbar,
+    Footer
+  },
+  computed:{
+    ...mapState(['loading'])
   }
 }
 </script>
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
